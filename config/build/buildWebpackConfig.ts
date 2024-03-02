@@ -4,12 +4,13 @@ import path from "path";
 import { buildPlugins } from "./buildPlugins";
 import { buildLoaders } from "./buildLoaders";
 import { buildResolvers } from "./buildResolvers";
+import { buildDevServer } from "./buildDevServer";
 
 // принимает опции сборки
 export function buildWebpackConfig(
   options: BuildOptions
 ): webpack.Configuration {
-  const { paths, mode } = options;
+  const { paths, mode, isDev } = options;
 
   return {
     mode, //способ сборки
@@ -31,5 +32,8 @@ export function buildWebpackConfig(
     },
     // import Component from './component/ (не надо указывать расширение при импорте)
     resolve: buildResolvers(),
+    // действия, доступные только во время продакшена
+    devtool: isDev ? "inline-source-map" : undefined, //где в коде произошла ошибка
+    devServer: isDev ? buildDevServer(options) : undefined,
   };
 }
