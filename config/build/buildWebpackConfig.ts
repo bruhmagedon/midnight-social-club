@@ -31,7 +31,7 @@ export function buildWebpackConfig(
       rules: buildLoaders(options),
     },
     // import Component from './component/ (не надо указывать расширение при импорте)
-    resolve: buildResolvers(),
+    resolve: buildResolvers(options),
     // действия, доступные только во время продакшена
     devtool: isDev ? "inline-source-map" : undefined, //где в коде произошла ошибка
     devServer: isDev ? buildDevServer(options) : undefined,
