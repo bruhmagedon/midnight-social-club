@@ -28,7 +28,7 @@ export function buildWebpackConfig(
     // для js
     module: {
       // обработка файлов за рамками js (лоудеры) (css, svg, ts и т.д.)
-      rules: buildLoaders(),
+      rules: buildLoaders(options),
     },
     // import Component from './component/ (не надо указывать расширение при импорте)
     resolve: buildResolvers(),
