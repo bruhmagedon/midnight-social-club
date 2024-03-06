@@ -20,5 +20,7 @@ export function buildPlugins({
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify("test-value"),
     }),
+    // обновление старницы без перезагрузки
+    new webpack.HotModuleReplacementPlugin(),
   ];
 }
