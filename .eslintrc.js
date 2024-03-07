@@ -4,9 +4,10 @@ module.exports = {
         es2021: true,
     },
     extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
+        'standard-with-typescript',
+        'plugin:react/recommended',
         'plugin:prettier/recommended',
+        'plugin:react/jsx-runtime', // отключение импорта React (v17)
     ],
     overrides: [
         {
@@ -23,15 +24,15 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: ['react', '@typescript/eslint', 'prettier'],
+    ignorePatterns: ['.eslintrc.js'],
+    plugins: ['react'],
     rules: {
-        'no-unused-vars': 'warn',
-        'prettier/prettier': [
-            'error',
-            // {
-            //     singleQuote: true,
-            //     parser: 'flow',
-            // },
-        ],
+        '@typescript-eslint/no-floating-promises': 'off',
+        '@typescript-eslint/naming-convention': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/no-unused-vars': 'warn',
+        'prettier/prettier': ['warn'],
+        '@typescript-eslint/prefer-nullish-coalescing': 'off',
+        '@typescript-eslint/strict-boolean-expressions': 'off',
     },
 };
