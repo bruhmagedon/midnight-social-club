@@ -1,27 +1,26 @@
-import { Suspense } from "react";
-import "./styles/index.scss";
-import { Link, Route, Routes } from "react-router-dom";
-import { classNames } from "shared/lib/classNames/classNames";
-import { useTheme } from "./providers/ThemeProvider";
-import { AboutPage } from "pages/AboutPage";
-import { MainPage } from "pages/MainPage";
+import './styles/index.scss';
 
-const App = () => {
-  const { theme, toggleTheme } = useTheme(); //хук для темы
+import { classNames } from 'shared/lib/classNames/classNames';
+import { useTheme } from './providers/ThemeProvider';
+import { AppRouter } from './providers/router';
+import { Navbar } from 'widgets/Navbar';
+import { Sidebar } from 'widgets/Sidebar';
+import { type FC, Suspense } from 'react';
 
-  return (
-    <div className={classNames("app", {}, [theme])}>
-      <button onClick={toggleTheme}>TOGGLE THEME</button>
-      <Link to={"/"}>Главная</Link>
-      <Link to={"/about"}>О сайте</Link>
-      <Suspense fallback={<div>Spinner//</div>}>
-        <Routes>
-          <Route path={"/about"} element={<AboutPage />} />
-          <Route path={"/"} element={<MainPage />} />
-        </Routes>
-      </Suspense>
-    </div>
-  );
+const App: FC = () => {
+    const { theme } = useTheme(); // хук для темы
+
+    return (
+        <div className={classNames('app', {}, [theme])}>
+            <Suspense fallback="">
+                <Navbar />
+                <div className="content-page">
+                    <Sidebar />
+                    <AppRouter />
+                </div>
+            </Suspense>
+        </div>
+    );
 };
 
 export default App;
