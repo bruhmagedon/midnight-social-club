@@ -29,6 +29,7 @@ module.exports = {
     ignorePatterns: ['.eslintrc.js'],
     plugins: ['react', 'i18next'],
     rules: {
+        'n/handle-callback-err': 'off',
         '@typescript-eslint/no-floating-promises': 'off',
         '@typescript-eslint/naming-convention': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
