@@ -5,11 +5,12 @@ module.exports = {
         jest: true,
     },
     extends: [
-        'standard-with-typescript',
-        'plugin:react/recommended',
-        'plugin:prettier/recommended',
-        'plugin:react/jsx-runtime', // отключение импорта React (v17)
-        'plugin:i18next/recommended',
+        "standard-with-typescript",
+        "plugin:react/recommended",
+        "plugin:prettier/recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:i18next/recommended",
+        "plugin:storybook/recommended"
     ],
     overrides: [
         {
