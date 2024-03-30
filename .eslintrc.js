@@ -37,6 +37,18 @@ module.exports = {
         'prettier/prettier': ['warn'],
         '@typescript-eslint/prefer-nullish-coalescing': 'off',
         '@typescript-eslint/strict-boolean-expressions': 'off',
-        'i18next/no-literal-string': ['error', { markupOnly: true }], //только отсутствие переводов в jsx
+        'i18next/no-literal-string': [
+            'error',
+            { markupOnly: true, ignoreAttribute: ['data-testid'] },
+        ], //только отсутствие переводов в jsx, игнор перевода в атрибутах тестирования
     },
+    // кастомизация ес-линта под конкретный файл
+    overrides: [
+        {
+            files: ['**/src/**/*.test.{ts,tsx}'],
+            rules: {
+                'i18next/no-literal-string': 'off',
+            },
+        },
+    ],
 };
