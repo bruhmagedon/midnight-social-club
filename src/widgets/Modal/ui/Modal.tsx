@@ -22,7 +22,7 @@ export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
     const timerRef = useRef<ReturnType<typeof setTimeout>>(); // Реф, чтобы очистить таймер
 
     // Закрытие модалки при нажатии на оверлей
-    const closeHandler = () => {
+    const closeHandler = useCallback(() => {
         if (onClose) {
             setIsClosing(true);
             // Закрытие окна по timeout
@@ -31,7 +31,7 @@ export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
                 setIsClosing(false);
             }, ANIMATION_DELAY);
         }
-    };
+    }, [onClose]);
 
     // При перерендере создаётся новая ссылка, будем мемоизировать
     const onKeyDown = useCallback(
@@ -46,13 +46,13 @@ export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
     useEffect(() => {
         // Закрытие окна по Esc
         if (isOpen) {
-            window.addEventListener('keypress', onKeyDown);
+            window.addEventListener('keydown', onKeyDown);
         }
         return () => {
             clearTimeout(timerRef.current);
-            window.removeEventListener('keypress', onKeyDown);
+            window.removeEventListener('keydown', onKeyDown);
         };
-    }, [isOpen]);
+    }, [isOpen, onKeyDown]);
 
     const onContentClick = (e: React.MouseEvent) => {
         // Чтобы модальное окно не закрывалось при клике внутри

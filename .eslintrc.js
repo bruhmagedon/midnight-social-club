@@ -28,7 +28,7 @@ module.exports = {
         sourceType: 'module',
     },
     ignorePatterns: ['.eslintrc.js'],
-    plugins: ['react', 'i18next'],
+    plugins: ['react', 'i18next', 'react-hooks'],
     rules: {
         '@typescript-eslint/no-confusing-void-expression': 'off',
         'n/handle-callback-err': 'off',
@@ -43,6 +43,8 @@ module.exports = {
             'error',
             { markupOnly: true, ignoreAttribute: ['data-testid'] },
         ], //только отсутствие переводов в jsx, игнор перевода в атрибутах тестирования
+        'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+        'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
     },
     // кастомизация ес-линта под конкретный файл
     overrides: [
