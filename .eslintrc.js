@@ -5,12 +5,12 @@ module.exports = {
         jest: true,
     },
     extends: [
-        "standard-with-typescript",
-        "plugin:react/recommended",
-        "plugin:prettier/recommended",
-        "plugin:react/jsx-runtime",
-        "plugin:i18next/recommended",
-        "plugin:storybook/recommended"
+        'standard-with-typescript',
+        'plugin:react/recommended',
+        'plugin:prettier/recommended',
+        'plugin:react/jsx-runtime',
+        'plugin:i18next/recommended',
+        'plugin:storybook/recommended',
     ],
     overrides: [
         {
@@ -30,6 +30,7 @@ module.exports = {
     ignorePatterns: ['.eslintrc.js'],
     plugins: ['react', 'i18next'],
     rules: {
+        '@typescript-eslint/no-confusing-void-expression': 'off',
         'n/handle-callback-err': 'off',
         '@typescript-eslint/no-floating-promises': 'off',
         '@typescript-eslint/naming-convention': 'off',
