@@ -7,6 +7,8 @@ import {
     useState,
     type ReactNode,
 } from 'react';
+import { Portal } from 'shared/ui/Portal/Portal';
+import { useTheme } from 'app/providers/ThemeProvider';
 
 interface ModalProps {
     className?: string;
@@ -20,6 +22,7 @@ const ANIMATION_DELAY = 300;
 export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
     const [isClosing, setIsClosing] = useState(false);
     const timerRef = useRef<ReturnType<typeof setTimeout>>(); // Реф, чтобы очистить таймер
+    const { theme } = useTheme();
 
     // Закрытие модалки при нажатии на оверлей
     const closeHandler = useCallback(() => {
@@ -59,21 +62,25 @@ export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
         e.stopPropagation(); // отменяет всплытие события (нажатие на родительский див)
     };
 
+    // Моды (условные стили)
     const mods: Record<string, boolean> = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
+        [cls[theme]]: true,
     };
 
     return (
-        <div className={classNames(cls.Modal, mods, [className])}>
-            <div className={cls.overlay} onClick={closeHandler}>
-                <div
-                    className={classNames(cls.content)}
-                    onClick={onContentClick}
-                >
-                    {children}
+        <Portal>
+            <div className={classNames(cls.Modal, mods, [className])}>
+                <div className={cls.overlay} onClick={closeHandler}>
+                    <div
+                        className={classNames(cls.content)}
+                        onClick={onContentClick}
+                    >
+                        {children}
+                    </div>
                 </div>
             </div>
-        </div>
+        </Portal>
     );
 };

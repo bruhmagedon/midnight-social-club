@@ -10,13 +10,19 @@
     // Отображение модального окна
     opacity: 0;
     pointer-events: none; //нельзя кликать по окну
+
+    color: var(--primary-color);
+}
+
+.Modal.dark {
+    --bg-color: #090949;
+    --primary-color: #04ff04;
 }
 
 .content {
     padding: 20px;
     border-radius: 12px;
     background: var(--bg-color);
-
     // Плавное открытие модалк:
     transition: 0.3s transform;
     transform: scale(0.5);
