@@ -8,10 +8,14 @@ import {
 const defaultTheme =
     (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT; // получили тему из ls, преобразовали к типу Theme, если ls пустой - присвоить дефолтный тип
 
+interface ThemeProviderProps {
+    initialTheme?: Theme;
+}
+
 // Возвращает из контекста провайдер (доступ к контексту в любой точке)
-const ThemeProvider: FC = ({ children }) => {
+const ThemeProvider: FC<ThemeProviderProps> = ({ children, initialTheme }) => {
     // FC чтобы получить children
-    const [theme, setTheme] = useState<Theme>(defaultTheme);
+    const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme);
 
     // value=объект, поэтому его нужно мемоизировать, чтобы он не инициализировался заново при каждом рендере компонента
     const defaultProps = useMemo(() => ({ theme, setTheme }), [theme]);

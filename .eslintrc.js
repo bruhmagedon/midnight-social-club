@@ -5,12 +5,12 @@ module.exports = {
         jest: true,
     },
     extends: [
-        "standard-with-typescript",
-        "plugin:react/recommended",
-        "plugin:prettier/recommended",
-        "plugin:react/jsx-runtime",
-        "plugin:i18next/recommended",
-        "plugin:storybook/recommended"
+        'standard-with-typescript',
+        'plugin:react/recommended',
+        'plugin:prettier/recommended',
+        'plugin:react/jsx-runtime',
+        'plugin:i18next/recommended',
+        'plugin:storybook/recommended',
     ],
     overrides: [
         {
@@ -28,8 +28,9 @@ module.exports = {
         sourceType: 'module',
     },
     ignorePatterns: ['.eslintrc.js'],
-    plugins: ['react', 'i18next'],
+    plugins: ['react', 'i18next', 'react-hooks'],
     rules: {
+        '@typescript-eslint/no-confusing-void-expression': 'off',
         'n/handle-callback-err': 'off',
         '@typescript-eslint/no-floating-promises': 'off',
         '@typescript-eslint/naming-convention': 'off',
@@ -42,6 +43,8 @@ module.exports = {
             'error',
             { markupOnly: true, ignoreAttribute: ['data-testid'] },
         ], //только отсутствие переводов в jsx, игнор перевода в атрибутах тестирования
+        'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+        'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
     },
     // кастомизация ес-линта под конкретный файл
     overrides: [
