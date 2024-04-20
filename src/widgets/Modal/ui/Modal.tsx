@@ -22,7 +22,6 @@ const ANIMATION_DELAY = 300;
 export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
     const [isClosing, setIsClosing] = useState(false);
     const timerRef = useRef<ReturnType<typeof setTimeout>>(); // Реф, чтобы очистить таймер
-    const { theme } = useTheme();
 
     // Закрытие модалки при нажатии на оверлей
     const closeHandler = useCallback(() => {
@@ -66,7 +65,6 @@ export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
     const mods: Record<string, boolean> = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
-        [cls[theme]]: true,
     };
 
     return (
