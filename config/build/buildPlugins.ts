@@ -6,7 +6,6 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 export function buildPlugins({
     paths,
-    isDev,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
     return [
         new HtmlWebpackPlugin({

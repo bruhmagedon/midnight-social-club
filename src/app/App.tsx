@@ -1,14 +1,21 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useTheme } from './providers/ThemeProvider';
 import { AppRouter } from './providers/router';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
-import { type FC, Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { userActions } from 'entities/User';
 
-const App: FC = () => {
-    const { theme } = useTheme(); // хук для темы
+const App = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // Проверка авторизации
+        dispatch(userActions.initAuthData());
+    }, [dispatch]);
+
     return (
-        <div className={classNames('app', {}, [theme])}>
+        <div className={classNames('app', {}, [])}>
             <Suspense fallback="">
                 <Navbar />
                 <div className="content-page">

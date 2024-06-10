@@ -8,5 +8,11 @@
     "Страница не найдена": "Page not found",
     "Произошла непредвиденная ошибка": "An unexpected error occurred",
     "Обновить страницу": "Refresh page",
-    "Короткий язык": "En"
+    "Короткий язык": "En",
+    "Войти": "Log in",
+    "Введите username": "Enter username",
+    "Введите пароль": "Enter password",
+    "Форма авторизации": "Authorization Form",
+    "Некорректная авторизация": "You have entered an incorrect username or password",
+    "Выйти": "Log out"
 }
