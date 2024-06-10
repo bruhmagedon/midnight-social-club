@@ -8,8 +8,9 @@ module.exports = {
         'standard-with-typescript',
         'plugin:react/recommended',
         'plugin:prettier/recommended',
-        'plugin:react/jsx-runtime', // отключение импорта React (v17)
+        'plugin:react/jsx-runtime',
         'plugin:i18next/recommended',
+        'plugin:storybook/recommended',
     ],
     overrides: [
         {
@@ -27,8 +28,10 @@ module.exports = {
         sourceType: 'module',
     },
     ignorePatterns: ['.eslintrc.js'],
-    plugins: ['react', 'i18next'],
+    plugins: ['react', 'i18next', 'react-hooks'],
     rules: {
+        '@typescript-eslint/no-confusing-void-expression': 'off',
+        'n/handle-callback-err': 'off',
         '@typescript-eslint/no-floating-promises': 'off',
         '@typescript-eslint/naming-convention': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
@@ -36,6 +39,22 @@ module.exports = {
         'prettier/prettier': ['warn'],
         '@typescript-eslint/prefer-nullish-coalescing': 'off',
         '@typescript-eslint/strict-boolean-expressions': 'off',
-        'i18next/no-literal-string': ['error', { markupOnly: true }], //только отсутствие переводов в jsx
+        'i18next/no-literal-string': [
+            'error',
+            { markupOnly: true, ignoreAttribute: ['data-testid'] },
+        ], //только отсутствие переводов в jsx, игнор перевода в атрибутах тестирования
+        'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+        'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
+        '@typescript-eslint/consistent-type-imports': 'off',
+        'react/display-name': 'off',
     },
+    // кастомизация ес-линта под конкретный файл
+    overrides: [
+        {
+            files: ['**/src/**/*.test.{ts,tsx}'],
+            rules: {
+                'i18next/no-literal-string': 'off',
+            },
+        },
+    ],
 };

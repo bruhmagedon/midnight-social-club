@@ -2,6 +2,17 @@
     "Тестовый пример": "Test example",
     "Перевод": "Translation",
     "Главная страница": "Main page",
+    "Главная": "Main",
+    "О сайте": "About",
     "Язык": "English",
-    "Страница не найдена": "Page not found"
+    "Страница не найдена": "Page not found",
+    "Произошла непредвиденная ошибка": "An unexpected error occurred",
+    "Обновить страницу": "Refresh page",
+    "Короткий язык": "En",
+    "Войти": "Log in",
+    "Введите username": "Enter username",
+    "Введите пароль": "Enter password",
+    "Форма авторизации": "Authorization Form",
+    "Некорректная авторизация": "You have entered an incorrect username or password",
+    "Выйти": "Log out"
 }
