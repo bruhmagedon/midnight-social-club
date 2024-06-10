@@ -45,6 +45,8 @@ module.exports = {
         ], //только отсутствие переводов в jsx, игнор перевода в атрибутах тестирования
         'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
         'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
+        '@typescript-eslint/consistent-type-imports': 'off',
+        'react/display-name': 'off',
     },
     // кастомизация ес-линта под конкретный файл
     overrides: [
