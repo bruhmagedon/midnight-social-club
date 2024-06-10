@@ -8,20 +8,33 @@ import {
     type ReactNode,
 } from 'react';
 import { Portal } from 'shared/ui/Portal/Portal';
-import { useTheme } from 'app/providers/ThemeProvider';
 
 interface ModalProps {
     className?: string;
     children?: ReactNode;
     isOpen?: boolean; // Статус открытия
     onClose?: () => void;
+    lazy?: boolean;
 }
 
 const ANIMATION_DELAY = 300;
 
-export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
+export const Modal = ({
+    className,
+    children,
+    isOpen,
+    onClose,
+    lazy,
+}: ModalProps) => {
     const [isClosing, setIsClosing] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
     const timerRef = useRef<ReturnType<typeof setTimeout>>(); // Реф, чтобы очистить таймер
+
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true);
+        }
+    }, [isOpen]);
 
     // Закрытие модалки при нажатии на оверлей
     const closeHandler = useCallback(() => {
@@ -66,6 +79,11 @@ export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
     };
+
+    // Чтобы модалка монтировалась на страницу только при открытии (ну конечно если нам это надо)
+    if (lazy && !isMounted) {
+        return null;
+    }
 
     return (
         <Portal>
