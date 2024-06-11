@@ -6,7 +6,6 @@ import { PageLoader } from 'widgets/PageLoader';
 const AppRouter = () => {
     return (
         <>
-            {/* eslint-disable-next-line i18next/no-literal-string */}
             <Suspense fallback={<PageLoader />}>
                 <Routes>
                     {/* Создаем роутер из конфига-маршрутов */}
