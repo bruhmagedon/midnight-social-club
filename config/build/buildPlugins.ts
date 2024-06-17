@@ -6,6 +6,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 export function buildPlugins({
     paths,
+    isDev,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
     return [
         new HtmlWebpackPlugin({
@@ -18,7 +19,7 @@ export function buildPlugins({
         }),
         // глобальные переменные для приложения
         new webpack.DefinePlugin({
-            __IS_DEV__: JSON.stringify('test-value'),
+            __IS_DEV__: JSON.stringify(isDev),
         }),
         // обновление старницы без перезагрузки
         new webpack.HotModuleReplacementPlugin(),
