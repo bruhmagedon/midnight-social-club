@@ -1,37 +1,37 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { StoryObj, type Meta } from '@storybook/react';
 import { Button, ButtonTheme } from './Button';
 
-const meta = {
-    title: 'Example/Button',
+const meta: Meta<typeof Button> = {
+    title: 'shared/Button',
     component: Button,
+    tags: ['autodocs'],
     parameters: {
         layout: 'centered',
     },
-    tags: ['autodocs'],
-    argTypes: {},
-} satisfies Meta<typeof Button>;
+    // decorators: [Story => Story()],
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+export type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
     args: {
-        children: 'Text',
+        children: 'Button',
     },
 };
 
-export const Secondary: Story = {
+export const Clear: Story = {
     args: {
-        children: 'Text',
         theme: ButtonTheme.CLEAR,
+        children: 'Button',
     },
 };
 
-// export const Large: Story = {
-//     args: {},
-// };
+export const Outline: Story = {
+    args: {
+        theme: ButtonTheme.OUTLINE,
+        children: 'Button',
+    },
+};
 
-// export const Small: Story = {
-//     args: {},
-// };
+// TODO добавить все состояния в сторибук когда я с ним разберусь
