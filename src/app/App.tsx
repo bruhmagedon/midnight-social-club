@@ -16,6 +16,7 @@ const App = () => {
 
     return (
         <div className={classNames('app', {}, [])}>
+            {/* Suspense чтобы файлы с переводами подгружались асинхронно */}
             <Suspense fallback="">
                 <Navbar />
                 <div className="content-page">
