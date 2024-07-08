@@ -30,13 +30,14 @@ module.exports = {
     ignorePatterns: ['.eslintrc.js'],
     plugins: ['react', 'i18next', 'react-hooks'],
     rules: {
+        // 'prettier/prettier': ['error', { endOfLine: 'auto' }],
         '@typescript-eslint/no-confusing-void-expression': 'off',
         'n/handle-callback-err': 'off',
         '@typescript-eslint/no-floating-promises': 'off',
         '@typescript-eslint/naming-convention': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/no-unused-vars': 'warn',
-        'prettier/prettier': ['warn'],
+        'prettier/prettier': ['error', { endOfLine: 'auto' }],
         '@typescript-eslint/prefer-nullish-coalescing': 'off',
         '@typescript-eslint/strict-boolean-expressions': 'off',
         'i18next/no-literal-string': [
