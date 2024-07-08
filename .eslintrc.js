@@ -12,6 +12,10 @@ module.exports = {
         'plugin:i18next/recommended',
         'plugin:storybook/recommended',
     ],
+    gloals: {
+        __IS_DEV__: true,
+        __API__: true,
+    },
     overrides: [
         {
             env: {
@@ -24,6 +28,9 @@ module.exports = {
         },
     ],
     parserOptions: {
+        // parser: '@typescript-eslint/parser',
+        // project: './tsconfig.json',
+        // tsconfigRootDir: __dirname,
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
