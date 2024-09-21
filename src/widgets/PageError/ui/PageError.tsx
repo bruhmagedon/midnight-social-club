@@ -12,6 +12,8 @@ export const PageError = ({ className }: PageErrorProps) => {
 
     const reloadPage = () => {
         // Перезагрузка страницы
+        // TODO*
+        // eslint-disable-next-line no-restricted-globals
         location.reload();
     };
 
