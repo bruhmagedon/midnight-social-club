@@ -1,10 +1,9 @@
 .Sidebar {
-    height: calc(100vh - var(--navbar-height)); //на всю высоту до навбара
+    height: calc(100vh - var(--navbar-height)); // на всю высоту до навбара
     width: var(--sidebar-width);
     background: var(--inverted-bg-color);
-
     position: relative;
-    transition: width 0.3s; //анимация разворачивания сайдбара (изменение ширины)
+    transition: width 0.3s; // анимация разворачивания сайдбара (изменение ширины)
 }
 
 .switchers {
@@ -34,6 +33,7 @@
 
 .collapsed {
     width: var(--sidebar-width-collapsed);
+
     .switchers {
         flex-direction: column;
         align-items: center;
