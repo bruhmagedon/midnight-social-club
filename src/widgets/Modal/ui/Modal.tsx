@@ -1,5 +1,4 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './Modal.module.scss';
 import {
     useCallback,
     useEffect,
@@ -8,6 +7,7 @@ import {
     type ReactNode,
 } from 'react';
 import { Portal } from 'shared/ui/Portal/Portal';
+import cls from './Modal.module.scss';
 
 interface ModalProps {
     className?: string;
