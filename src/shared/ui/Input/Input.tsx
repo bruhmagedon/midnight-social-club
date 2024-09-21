@@ -1,6 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
+import {
+    InputHTMLAttributes, memo, useEffect, useRef, useState,
+} from 'react';
 import cls from './Input.module.scss';
-import { InputHTMLAttributes, memo, useEffect, useRef, useState } from 'react';
 
 // Омит чтобы использовать свои value и onChange
 type HTMLInputProps = Omit<
