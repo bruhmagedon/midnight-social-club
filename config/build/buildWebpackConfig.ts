@@ -1,5 +1,5 @@
-import { type BuildOptions } from './types/config';
 import type webpack from 'webpack';
+import { type BuildOptions } from './types/config';
 import { buildPlugins } from './buildPlugins';
 import { buildLoaders } from './buildLoaders';
 import { buildResolvers } from './buildResolvers';
@@ -18,9 +18,9 @@ export function buildWebpackConfig(
             path: paths.build, // Путь для выходных файлов
             clean: true, // Очищает директорию выходных файлов перед сборкой
         },
-        plugins: buildPlugins(options), //Плагины
+        plugins: buildPlugins(options), // Плагины
         module: {
-            rules: buildLoaders(options), //Лоадеры
+            rules: buildLoaders(options), // Лоадеры
         },
         resolve: buildResolvers(options),
         devtool: isDev ? 'inline-source-map' : undefined, // Source Maps для разработки

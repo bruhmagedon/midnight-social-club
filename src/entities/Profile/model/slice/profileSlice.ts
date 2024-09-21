@@ -14,7 +14,7 @@ export const profileSlice = createSlice({
     name: 'profile',
     initialState,
     reducers: {},
-    extraReducers: builder => {
+    extraReducers: (builder) => {
         builder.addCase(fetchProfileData.pending, (state, action) => {
             state.error = undefined;
             state.isLoading = true;

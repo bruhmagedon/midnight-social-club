@@ -1,12 +1,12 @@
 /* eslint-disable i18next/no-literal-string */
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './Navbar.module.scss';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { memo, useCallback, useState } from 'react';
 import { LoginModal } from 'features/AuthByUsername';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAuthData, userActions } from 'entities/User';
+import cls from './Navbar.module.scss';
 
 interface NavbarProps {
     className?: string;

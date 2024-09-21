@@ -1,4 +1,6 @@
-import { type FC, useMemo, useState, useEffect } from 'react';
+import {
+    type FC, useMemo, useState, useEffect,
+} from 'react';
 import {
     LOCAL_STORAGE_THEME_KEY,
     Theme,
@@ -6,8 +8,7 @@ import {
 } from '../lib/ThemeContext';
 import { useTheme } from '../lib/useTheme';
 
-const defaultTheme =
-    (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT; // получили тему из ls, преобразовали к типу Theme, если ls пустой - присвоить дефолтный тип
+const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT; // получили тему из ls, преобразовали к типу Theme, если ls пустой - присвоить дефолтный тип
 
 interface ThemeProviderProps {
     initialTheme?: Theme;

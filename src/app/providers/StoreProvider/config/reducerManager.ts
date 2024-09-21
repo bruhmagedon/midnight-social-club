@@ -23,7 +23,7 @@ export function createReducerManager(
             if (keysToRemove.length > 0) {
                 state = { ...state };
 
-                keysToRemove.forEach(key => {
+                keysToRemove.forEach((key) => {
                     delete state[key];
                 });
 

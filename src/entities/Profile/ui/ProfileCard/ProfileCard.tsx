@@ -1,5 +1,4 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './ProfileCard.module.scss';
 import { useSelector } from 'react-redux';
 import { getProfileData } from 'entities/Profile/model/selectors/getProfileData/getProfileData';
 import { getProfileLoading } from 'entities/Profile/model/selectors/getProfileLoading/getLoginLoading';
@@ -8,6 +7,7 @@ import { Text } from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
+import cls from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
     className?: string;

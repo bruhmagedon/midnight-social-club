@@ -13,25 +13,26 @@ export const loginByUsername = createAsyncThunk<
     User,
     LoginByUsernameProps,
     ThunkConfig<string>
->('login/loginByUsername', async (authData: any, thunkAPI) => {
-    const { extra, dispatch, rejectWithValue } = thunkAPI;
+>(
+    'login/loginByUsername',
+    async (authData: any, { extra, dispatch, rejectWithValue }) => {
+        try {
+            const response = await extra.api.post<User>('/login', authData);
 
-    try {
-        const response = await extra.api.post<User>('/login', authData);
+            if (!response.data) {
+                throw new Error();
+            }
 
-        if (!response.data) {
-            throw new Error();
+            // При успешной авторизации - сохраняем юзера в authData и localStorage (имитация авторизации)
+            localStorage.setItem(
+                USER_LOCALSTORAGE_KEY,
+                JSON.stringify(response.data),
+            );
+            dispatch(userActions.setAuthData(response.data));
+            extra.navigate('/about');
+            return response.data;
+        } catch (e) {
+            return rejectWithValue('error');
         }
-
-        // При успешной авторизации - сохраняем юзера в authData и localStorage (имитация авторизации)
-        localStorage.setItem(
-            USER_LOCALSTORAGE_KEY,
-            JSON.stringify(response.data),
-        );
-        dispatch(userActions.setAuthData(response.data));
-        extra.navigate('/about');
-        return response.data;
-    } catch (e) {
-        return rejectWithValue('error');
-    }
-});
+    },
+);

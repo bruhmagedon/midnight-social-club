@@ -1,9 +1,9 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './Sidebar.module.scss';
 import { memo, useState } from 'react';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 import { LangSwitcher } from 'widgets/LangSwitcher';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
+import cls from './Sidebar.module.scss';
 import { SidebarItemsList } from '../../model/items';
 import { SidebarItem } from '../SideBarItem/SidebarItem';
 
@@ -15,7 +15,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
     const [collapsed, setCollapsed] = useState<boolean>(false); // развернут ли сайдбар
 
     const onToggle = () => {
-        setCollapsed(prev => !prev);
+        setCollapsed((prev) => !prev);
     };
 
     return (
@@ -36,7 +36,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
                 {collapsed ? '>' : '<'}
             </Button>
             <div className={cls.items}>
-                {SidebarItemsList.map(item => (
+                {SidebarItemsList.map((item) => (
                     <SidebarItem
                         key={item.path}
                         item={item}
