@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { Button, ButtonTheme } from './Button';
 
+//* RTL - React Testing Libriary
 describe('Button', () => {
     test('Test render', () => {
         // отрендерим изолировано один компонент
