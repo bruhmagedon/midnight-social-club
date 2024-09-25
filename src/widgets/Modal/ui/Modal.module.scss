@@ -1,5 +1,5 @@
 .Modal {
-    position: fixed; //будет прекреплено всегда в одном месте экрана
+    position: fixed; // будет прекреплено всегда в одном месте экрана
     // Растягиваем на всю ширину:
     top: 0;
     left: 0;
@@ -9,8 +9,7 @@
 
     // Отображение модального окна
     opacity: 0;
-    pointer-events: none; //нельзя кликать по окну
-
+    pointer-events: none; // нельзя кликать по окну
     color: var(--primary-color);
 }
 
@@ -18,6 +17,7 @@
     padding: 20px;
     border-radius: 12px;
     background: var(--bg-color);
+
     // Плавное открытие модалк:
     transition: 0.3s transform;
     transform: scale(0.5);
@@ -38,6 +38,7 @@
     opacity: 1;
     pointer-events: auto;
     z-index: var(--modal-z-index);
+
     .content {
         transform: scale(1);
     }

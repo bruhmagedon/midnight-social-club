@@ -9,7 +9,7 @@ export function buildPlugins({
     isDev,
     apiUrl,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
-    return [
+    const plugins = [
         new HtmlWebpackPlugin({
             template: paths.html,
         }),
@@ -23,10 +23,17 @@ export function buildPlugins({
             __IS_DEV__: JSON.stringify(isDev),
             __API__: JSON.stringify(apiUrl),
         }),
-        // обновление старницы без перезагрузки
-        new webpack.HotModuleReplacementPlugin(),
-        new BundleAnalyzerPlugin({
-            openAnalyzer: false,
-        }),
     ];
+
+    if (isDev) {
+        plugins.push(
+            // обновление старницы без перезагрузки
+            new webpack.HotModuleReplacementPlugin(),
+        );
+        plugins.push(new BundleAnalyzerPlugin({
+            openAnalyzer: false,
+        }));
+    }
+
+    return plugins;
 }

@@ -10,7 +10,6 @@ import {
 } from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useEffect } from 'react';
-import cls from './ProfilePage.module.scss';
 
 const reducers: ReducersList = {
     profile: profileReducers,
@@ -29,7 +28,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames(cls.ProfilePage, {}, [className])}>
+            <div className={classNames('', {}, [className])}>
                 <ProfileCard />
             </div>
         </DynamicModuleLoader>

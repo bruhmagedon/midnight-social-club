@@ -67,6 +67,7 @@ module.exports = {
     // Переопределение правил для определённых файлов
     overrides: [
         {
+            // файлы тестов, сторибуков, для них переопределяем правила
             files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
             rules: {
                 'i18next/no-literal-string': 'off',

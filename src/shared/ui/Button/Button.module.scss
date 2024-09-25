@@ -1,6 +1,6 @@
 .Button {
     cursor: pointer;
-    color: var(--inverted-primary-color);
+    color: var(--primary-color);
     padding: 6px 15px;
 }
 
@@ -51,9 +51,11 @@
 .size_m {
     font: var(--font-m);
 }
+
 .size_l {
     font: var(--font-l);
 }
+
 .size_xl {
     font: var(--font-xl);
 }
