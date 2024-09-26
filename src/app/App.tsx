@@ -1,22 +1,18 @@
+import './styles/index.scss';
+
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
-import { Suspense, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { userActions } from 'entities/User';
+import { type FC, Suspense } from 'react';
 import { AppRouter } from './providers/router';
+import { useTheme } from './providers/ThemeProvider';
 
-const App = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        // Проверка авторизации
-        dispatch(userActions.initAuthData());
-    }, [dispatch]);
+const App: FC = () => {
+    const { theme } = useTheme(); // хук для темы
 
     return (
-        <div className={classNames('app', {}, [])}>
-            {/* Suspense чтобы файлы с переводами подгружались асинхронно */}
+        <div className={classNames('app', {}, [theme])}>
+            { /* Suspense чтобы файлы с переводами подгружались асинхронно */}
             <Suspense fallback="">
                 <Navbar />
                 <div className="content-page">

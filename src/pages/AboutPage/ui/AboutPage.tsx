@@ -1,10 +1,14 @@
-import { memo } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-const AboutPage = memo(() => {
-    // Первый аргумент - название namespace откуда брать перевод (по дефолтку если не указать - translation)
+const AboutPage = () => {
     const { t } = useTranslation('about');
-    return <div>{t('О нас')}</div>;
-});
+
+    return (
+        <div>
+            {t('О сайте')}
+        </div>
+    );
+};
 
 export default AboutPage;

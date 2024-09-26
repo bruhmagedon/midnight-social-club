@@ -26,31 +26,11 @@ Clear.args = {
     theme: ButtonTheme.CLEAR,
 };
 
-export const BackgroundTheme = Template.bind({});
-BackgroundTheme.args = {
-    children: 'Text',
-    theme: ButtonTheme.BACKGROUND,
-};
-
-export const BackgroundInverted = Template.bind({});
-BackgroundInverted.args = {
-    children: 'Text',
-    theme: ButtonTheme.BACKGROUND_INVERTED,
-};
-
 export const Outline = Template.bind({});
 Outline.args = {
     children: 'Text',
     theme: ButtonTheme.OUTLINE,
 };
-
-export const OutlineDark = Template.bind({});
-OutlineDark.args = {
-    children: 'Text',
-    theme: ButtonTheme.OUTLINE,
-};
-// Отдельный декоратор темы для стори
-OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const OutlineSizeM = Template.bind({});
 OutlineSizeM.args = {
@@ -66,11 +46,31 @@ OutlineSizeL.args = {
     size: ButtonSize.L,
 };
 
-export const OutlineSizeXL = Template.bind({});
-OutlineSizeXL.args = {
+export const OutlineSizeXl = Template.bind({});
+OutlineSizeXl.args = {
     children: 'Text',
     theme: ButtonTheme.OUTLINE,
     size: ButtonSize.XL,
+};
+
+export const OutlineDark = Template.bind({});
+OutlineDark.args = {
+    children: 'Text',
+    theme: ButtonTheme.OUTLINE,
+};
+// Отдельный декоратор темы для стори
+OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const BackgroundTheme = Template.bind({});
+BackgroundTheme.args = {
+    children: 'Text',
+    theme: ButtonTheme.BACKGROUND,
+};
+
+export const BackgroundInverted = Template.bind({});
+BackgroundInverted.args = {
+    children: 'Text',
+    theme: ButtonTheme.BACKGROUND_INVERTED,
 };
 
 export const Square = Template.bind({});
@@ -79,7 +79,6 @@ Square.args = {
     theme: ButtonTheme.BACKGROUND_INVERTED,
     square: true,
 };
-
 export const SquareSizeM = Template.bind({});
 SquareSizeM.args = {
     children: '>',

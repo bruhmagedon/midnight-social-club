@@ -1,20 +1,22 @@
-import { memo, useState } from 'react';
-import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
-import { LangSwitcher } from 'widgets/LangSwitcher';
-import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { t } from 'i18next';
+import { useState } from 'react';
+import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
+import { useTranslation } from 'react-i18next';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { LangSwitcher } from 'widgets/LangSwitcher';
+import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
+import AboutIcon from 'shared/assets/icons/about.svg';
+import HomeIcon from 'shared/assets/icons/home.svg';
 import cls from './Sidebar.module.scss';
-import { SidebarItemsList } from '../../model/items';
-import { SidebarItem } from '../SideBarItem/SidebarItem';
 
 interface SidebarProps {
     className?: string;
 }
 
-export const Sidebar = memo(({ className }: SidebarProps) => {
-    const [collapsed, setCollapsed] = useState<boolean>(false); // развернут ли сайдбар
+export const Sidebar = ({ className }: SidebarProps) => {
+    const [collapsed, setCollapsed] = useState(false);
+    const { t } = useTranslation();
 
     const onToggle = () => {
         setCollapsed((prev) => !prev);
@@ -23,33 +25,43 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
     return (
         <div
             data-testid="sidebar"
-            className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [
-                className,
-            ])}
+            className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
         >
             <Button
                 data-testid="sidebar-toggle"
-                className={cls.collapseBtn}
                 onClick={onToggle}
+                className={cls.collapseBtn}
                 theme={ButtonTheme.BACKGROUND_INVERTED}
-                square
                 size={ButtonSize.L}
+                square
             >
                 {collapsed ? '>' : '<'}
             </Button>
             <div className={cls.items}>
-                {SidebarItemsList.map((item) => (
-                    <SidebarItem
-                        key={item.path}
-                        item={item}
-                        collapsed={collapsed}
-                    />
-                ))}
+                <AppLink
+                    to={RoutePath.main}
+                    theme={AppLinkTheme.SECONDARY}
+                    className={cls.item}
+                >
+                    <HomeIcon className={cls.icon} />
+                    <span className={cls.link}>{t('Главная')}</span>
+                </AppLink>
+                <AppLink
+                    className={cls.item}
+                    to={RoutePath.about}
+                    theme={AppLinkTheme.SECONDARY}
+                >
+                    <AboutIcon className={cls.icon} />
+                    <span className={cls.link}>{t('О сайте')}</span>
+                </AppLink>
             </div>
             <div className={cls.switchers}>
                 <ThemeSwitcher />
-                <LangSwitcher className={cls.lang} short={collapsed} />
+                <LangSwitcher
+                    short={collapsed}
+                    className={cls.lang}
+                />
             </div>
         </div>
     );
-});
+};
