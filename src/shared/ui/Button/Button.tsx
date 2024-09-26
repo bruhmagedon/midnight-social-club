@@ -32,6 +32,7 @@ export const Button = memo((props: ButtonProps) => {
         ...otherProps
     } = props;
 
+    // Моды в отдельном объекте
     const mods: Record<string, boolean> = {
         [cls[theme]]: true,
         [cls.square]: square,
