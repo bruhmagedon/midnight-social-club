@@ -1,16 +1,44 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
+import { Modal } from 'widgets/Modal';
+import { t } from 'i18next';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { useState, useCallback } from 'react';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
     className?: string;
 }
 
-export const Navbar = ({ className }: NavbarProps) => (
-    <div className={classNames(cls.Navbar, {}, [className])}>
-        <div className={cls.links} />
-    </div>
-);
+export const Navbar = ({ className }: NavbarProps) => {
+    const { t } = useTranslation();
+    // Управление видимость модалки
+    const [isAuthModal, setIsAuthModal] = useState(false);
+
+    // Все функции, которые передаются как пропсы, будем кешировать
+    const onCloseModal = useCallback(() => {
+        setIsAuthModal(false);
+    }, []);
+
+    const onShowModal = useCallback(() => {
+        setIsAuthModal(true);
+    }, []);
+
+    return (
+        <div className={classNames(cls.Navbar, {}, [className])}>
+            <Button
+                theme={ButtonTheme.CLEAR_INVERTED}
+                className={cls.links}
+                onClick={onShowModal}
+            >
+                {t('Войти')}
+            </Button>
+            <Modal isOpen={isAuthModal} onClose={onCloseModal}>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus ipsa odio id quo tempore omnis obcaecati, tenetur possimus magnam voluptas error eum quam dolore repellat, minima et, ullam ratione beatae.
+            </Modal>
+        </div>
+    );
+};
 
 // /* eslint-disable i18next/no-literal-string */
 // import { classNames } from 'shared/lib/classNames/classNames';
