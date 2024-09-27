@@ -1,3 +1,5 @@
+// TODO убрать игнор
+/* eslint-disable i18next/no-literal-string */
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Modal } from 'widgets/Modal';
@@ -34,7 +36,9 @@ export const Navbar = ({ className }: NavbarProps) => {
                 {t('Войти')}
             </Button>
             <Modal isOpen={isAuthModal} onClose={onCloseModal}>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus ipsa odio id quo tempore omnis obcaecati, tenetur possimus magnam voluptas error eum quam dolore repellat, minima et, ullam ratione beatae.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus ipsa odio id quo tempore omnis
+                obcaecati, tenetur possimus magnam voluptas error eum quam dolore
+                repellat, minima et, ullam ratione beatae.
             </Modal>
         </div>
     );
