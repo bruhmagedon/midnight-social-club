@@ -1,9 +1,9 @@
 name: linting, testing, building
 on:
   push:
-    branches: [ main ]
+    branches: [ testing ]
   pull_request:
-    branches: [ main ]
+    branches: [ testing ]
 jobs:
   pipeline:
     runs-on: ubuntu-latest
@@ -17,8 +17,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: install modules
-        run: npm install
       - name: build production project
         run: npm run build:prod
         if: always()
