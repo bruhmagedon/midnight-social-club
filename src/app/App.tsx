@@ -5,7 +5,7 @@ import { type FC, Suspense } from 'react';
 import { AppRouter } from './providers/router';
 import { useTheme } from './providers/ThemeProvider';
 
-const App: FC = () => {
+const App = () => {
     const { theme } = useTheme(); // хук для темы
 
     return (
