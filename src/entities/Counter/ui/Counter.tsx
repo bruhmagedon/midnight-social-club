@@ -24,9 +24,9 @@ export const Counter = ({ className }: CounterProps) => {
 
     return (
         <div>
-            <h1>{`Value = ${counterValue}`}</h1>
-            <Button onClick={inc}>Inc</Button>
-            <Button onClick={dec}>Dec</Button>
+            <h1 data-testid="value-title">{`Value = ${counterValue}`}</h1>
+            <Button data-testid="increment-btn" onClick={inc}>Inc</Button>
+            <Button data-testid="decrement-btn" onClick={dec}>Dec</Button>
         </div>
     );
 };
