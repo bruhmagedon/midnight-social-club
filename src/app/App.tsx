@@ -5,21 +5,17 @@ import { type FC, Suspense } from 'react';
 import { AppRouter } from './providers/router';
 import { useTheme } from './providers/ThemeProvider';
 
-const App = () => {
-    const { theme } = useTheme(); // хук для темы
-
-    return (
-        <div className={classNames('app', {}, [theme])}>
-            { /* Suspense чтобы файлы с переводами подгружались асинхронно */}
-            <Suspense fallback="">
-                <Navbar />
-                <div className="content-page">
-                    <Sidebar />
-                    <AppRouter />
-                </div>
-            </Suspense>
-        </div>
-    );
-};
+const App = () => (
+    <div className={classNames('app', {}, [])}>
+        { /* Suspense чтобы файлы с переводами подгружались асинхронно */}
+        <Suspense fallback="">
+            <Navbar />
+            <div className="content-page">
+                <Sidebar />
+                <AppRouter />
+            </div>
+        </Suspense>
+    </div>
+);
 
 export default App;
