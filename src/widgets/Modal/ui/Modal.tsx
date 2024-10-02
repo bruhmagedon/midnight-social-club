@@ -15,7 +15,7 @@ interface ModalProps {
     children?: ReactNode;
     isOpen?: boolean; // Статус открытия
     onClose?: () => void; // Хендлер закрытия
-    lazy?: boolean;
+    lazy?: boolean; // C флагом lazy мы не монтируем модалку при загрузке страницы. Она монтируется только при нажатии на кнопку, когда isOpen = true
 }
 
 const ANIMATION_DELAY = 300;
@@ -29,6 +29,7 @@ export const Modal = ({
 }: ModalProps) => {
     const [isClosing, setIsClosing] = useState(false); // Момент закрытия модалки (для анимации закрытия)
     const [isMounted, setIsMounted] = useState(false);
+
     const timerRef = useRef<ReturnType<typeof setTimeout>>(); // Реф, чтобы очистить таймер
 
     useEffect(() => {
