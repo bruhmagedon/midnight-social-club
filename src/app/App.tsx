@@ -1,9 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
-import { type FC, Suspense } from 'react';
+import { Suspense } from 'react';
 import { AppRouter } from './providers/router';
-import { useTheme } from './providers/ThemeProvider';
 
 const App = () => (
     <div className={classNames('app', {}, [])}>
