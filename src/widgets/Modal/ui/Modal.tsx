@@ -1,5 +1,6 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import {
+    MutableRefObject,
     useCallback,
     useEffect,
     useRef,
@@ -30,7 +31,7 @@ export const Modal = ({
     const [isClosing, setIsClosing] = useState(false); // Момент закрытия модалки (для анимации закрытия)
     const [isMounted, setIsMounted] = useState(false);
 
-    const timerRef = useRef<ReturnType<typeof setTimeout>>(); // Реф, чтобы очистить таймер
+    const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>; // Реф, чтобы очистить таймер (мутабельный реф)
 
     useEffect(() => {
         if (isOpen) {
@@ -79,7 +80,7 @@ export const Modal = ({
     };
 
     // Моды (условные стили)
-    const mods: Record<string, boolean> = {
+    const mods: Mods = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
     };

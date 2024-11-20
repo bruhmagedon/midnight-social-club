@@ -1,11 +1,19 @@
-import { configureStore, DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
+import {
+    CombinedState,
+    configureStore, Reducer, ReducersMapObject,
+} from '@reduxjs/toolkit';
 import { counterReducer } from '_entities/Counter';
 import { userReducer } from '_entities/User';
-import { loginReducer } from 'features/AuthByUsername/model/slice/loginSlice';
-import { StateSchema } from './StateSchema';
+import { $api } from 'shared/api/api';
+import { NavigateOptions, To, useNavigate } from 'react-router-dom';
+import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
-export function createReduxStore(initialState? : StateSchema, asyncReducers?: ReducersMapObject<StateSchema>) {
+export function createReduxStore(
+    initialState? : StateSchema,
+    asyncReducers?: ReducersMapObject<StateSchema>,
+    navigate?: (to: To, options?: NavigateOptions) => void,
+) {
     // Список корневых редьюсеров
     const rootReducers : ReducersMapObject<StateSchema> = {
         ...asyncReducers,
@@ -15,10 +23,19 @@ export function createReduxStore(initialState? : StateSchema, asyncReducers?: Re
 
     const reducerManager = createReducerManager(rootReducers);
 
-    const store = configureStore<StateSchema>({
-        reducer: reducerManager.reduce,
+    const store = configureStore({
+        reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
         devTools: __IS_DEV__,
         preloadedState: initialState,
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+            thunk:
+            {
+                extraArgument: {
+                    api: $api,
+                    navigate,
+                },
+            },
+        }),
     });
 
     // @ts-ignore - добавили редьюсер менеджер для стора
