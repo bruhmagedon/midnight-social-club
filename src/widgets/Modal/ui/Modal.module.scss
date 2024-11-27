@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: var(--modal-z-index);
+    z-index: -1;
 
     // Отображение модального окна
     opacity: 0;
@@ -18,7 +18,7 @@
     border-radius: 12px;
     background: var(--bg-color);
 
-    // Плавное открытие модалк:
+    // Плавное открытие модалки:
     transition: 0.3s transform;
     transform: scale(0.5);
     max-width: 60%; // чтобы нерастягивалось на всю ширину
@@ -39,6 +39,7 @@
     pointer-events: auto;
     z-index: var(--modal-z-index);
 
+    // Одновременно управляем стилями дочерних элементов при открытии
     .content {
         transform: scale(1);
     }

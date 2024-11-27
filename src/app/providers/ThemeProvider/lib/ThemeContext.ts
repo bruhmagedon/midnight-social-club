@@ -1,11 +1,10 @@
 import { createContext } from 'react';
 
 // доступные темы
-export const enum Theme {
+export enum Theme {
     LIGHT = 'app_light_theme',
     DARK = 'app_dark_theme',
 }
-
 // Интерфейс для контекста
 export interface ThemeContextProps {
     theme?: Theme; // тема

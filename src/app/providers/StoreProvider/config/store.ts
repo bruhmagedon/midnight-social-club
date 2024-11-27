@@ -1,45 +1,44 @@
-import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
-import { userReducers } from 'entities/User';
+import {
+    CombinedState,
+    configureStore, Reducer, ReducersMapObject,
+} from '@reduxjs/toolkit';
+import { counterReducer } from '_entities/Counter';
+import { userReducer } from '_entities/User';
 import { $api } from 'shared/api/api';
-// @ts-ignore
-import { To } from 'history';
-import { NavigateOptions } from 'react-router';
-import { CombinedState, Reducer } from 'redux';
+import { NavigateOptions, To, useNavigate } from 'react-router-dom';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
 export function createReduxStore(
-    initialState?: StateSchema,
+    initialState? : StateSchema,
     asyncReducers?: ReducersMapObject<StateSchema>,
     navigate?: (to: To, options?: NavigateOptions) => void,
 ) {
-    const rootReducers: ReducersMapObject<StateSchema> = {
+    // Список корневых редьюсеров
+    const rootReducers : ReducersMapObject<StateSchema> = {
         ...asyncReducers,
-        user: userReducers,
+        counter: counterReducer,
+        user: userReducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);
-
-    const extraArg: ThunkExtraArg = {
-        api: $api,
-        navigate,
-    };
 
     const store = configureStore({
         reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
         devTools: __IS_DEV__,
         preloadedState: initialState,
-        middleware: (getDefaultMiddleware) =>
-        // миддлвейр, чтобы добавлять в райнтайме редьюсеры (асинхронно)
-        // eslint-disable-next-line implicit-arrow-linebreak
-            getDefaultMiddleware({ // TODO*
-                thunk: {
-                    extraArgument: extraArg,
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+            thunk:
+            {
+                extraArgument: {
+                    api: $api,
+                    navigate,
                 },
-            }),
+            },
+        }),
     });
 
-    // @ts-ignore
+    // @ts-ignore - добавили редьюсер менеджер для стора
     store.reducerManager = reducerManager;
 
     return store;

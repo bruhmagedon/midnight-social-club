@@ -1,9 +1,9 @@
 .Sidebar {
-    height: calc(100vh - var(--navbar-height)); // на всю высоту до навбара
+    height: calc(100vh - var(--navbar-height));
     width: var(--sidebar-width);
     background: var(--inverted-bg-color);
     position: relative;
-    transition: width 0.3s; // анимация разворачивания сайдбара (изменение ширины)
+    transition: width 0.3s;
 }
 
 .switchers {
@@ -21,14 +21,29 @@
 .collapseBtn {
     position: absolute;
     right: -32px;
-    bottom: 40px;
+    bottom: 32px;
 }
 
 .items {
-    margin-left: 30px;
     margin-top: 20px;
+    margin-left: 30px;
     display: flex;
     flex-direction: column;
+}
+
+.item {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    margin-left: 10px;
+    opacity: 1;
+}
+
+.icon {
+    fill: var(--inverted-primary-color);
 }
 
 .collapsed {

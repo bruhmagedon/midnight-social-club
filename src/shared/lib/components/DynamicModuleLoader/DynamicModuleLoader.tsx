@@ -1,16 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
-import {
-    ReduxStoreWithManager,
-    StateSchemaKeys,
-} from 'app/providers/StoreProvider';
+import { ReduxStoreWithManager, StateSchemaKeys } from 'app/providers/StoreProvider/config/StateSchema';
 import { Reducer } from '@reduxjs/toolkit';
 
+// Объект редьюсеров
 export type ReducersList = {
     [name in StateSchemaKeys]?: Reducer;
-};
-
-type ReducersListEntry = [StateSchemaKeys, Reducer];
+}
 
 interface DynamicModuleLoaderProps {
     reducers: ReducersList;
@@ -18,37 +14,35 @@ interface DynamicModuleLoaderProps {
     children: React.ReactNode;
 }
 
+// Компонент для подключения динамических редьюсеров
 export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
-    const { children, reducers, removeAfterUnmount } = props;
+    const {
+        reducers, removeAfterUnmount, children,
+    } = props;
 
     const store = useStore() as ReduxStoreWithManager;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // В момент монтирования компонента добавляем  асинк-редьюсер через менеджер
-        // Теперь редьюсер изолирован внутри модуля, он не будет использоваться в других фичах
-        // Редьюсер будет подключаться только с монтированием (lazy) этого компонента
-
-        Object.entries(reducers).forEach(
-            ([name, reducer]: ReducersListEntry) => {
-                store.reducerManager.add(name, reducer);
-                dispatch({ type: '@INIT  reducer' });
-            },
-        );
+        Object.entries(reducers).forEach(([name, reducer]) => {
+            store.reducerManager.add(name as StateSchemaKeys, reducer);
+            dispatch({ type: `@INIT ${name} reducer` });
+        });
 
         return () => {
             if (removeAfterUnmount) {
-                // Удаление при демонтировании компонента
-                Object.entries(reducers).forEach(
-                    ([name]: ReducersListEntry) => {
-                        store.reducerManager.remove(name);
-                        dispatch({ type: '@DESTROY  reducer' });
-                    },
-                );
+                Object.entries(reducers).forEach(([name, reducer]) => {
+                    store.reducerManager.remove(name as StateSchemaKeys);
+                    dispatch({ type: `@DESTROY ${name} reducer` });
+                });
             }
         };
-        // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return <>{children}</>;
+    return (
+        <>
+            {children}
+        </>
+    );
 };

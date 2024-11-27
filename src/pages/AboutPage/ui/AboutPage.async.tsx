@@ -1,4 +1,7 @@
 import { lazy } from 'react';
 
-// ленивая подгрузка чанка (code-splitting)
-export const AboutPageAsync = lazy(async () => await import('./AboutPage'));
+export const AboutPageAsync = lazy(() => new Promise((resolve) => {
+    // @ts-ignore
+    // Имитация подгрузки страницы
+    setTimeout(() => resolve(import('./AboutPage')), 1500);
+}));

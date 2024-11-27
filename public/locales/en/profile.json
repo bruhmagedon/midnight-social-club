@@ -2,5 +2,7 @@
     "Профиль": "Profile",
     "Редактировать": "Edit",
     "Ваше имя": "Your name",
-    "Ваша фамилия": "Your surname"
+    "Ваша фамилия": "Your surname",
+    "Произошла ошибка при загрузке профиля" : "An error occurred while uploading the profile",
+    "Попробуйте обновить страницу": "Try refreshing the page"
 }

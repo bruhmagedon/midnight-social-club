@@ -3,20 +3,19 @@ import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
 import { Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { userActions } from 'entities/User';
+import { userActions } from '_entities/User';
 import { AppRouter } from './providers/router';
 
 const App = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // Проверка авторизации
         dispatch(userActions.initAuthData());
     }, [dispatch]);
 
     return (
         <div className={classNames('app', {}, [])}>
-            {/* Suspense чтобы файлы с переводами подгружались асинхронно */}
+            { /* Suspense чтобы файлы с переводами подгружались асинхронно */}
             <Suspense fallback="">
                 <Navbar />
                 <div className="content-page">

@@ -1,14 +1,16 @@
+import { Counter } from '_entities/Counter';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { memo } from 'react';
-import cls from './MainPage.module.scss';
+import { Input } from 'shared/ui/Input/Input';
 
-const MainPage = memo(() => {
+const MainPage = () => {
     const { t } = useTranslation();
 
     return (
-        <div className={classNames(cls.MainPage)}>{t('Главная страница')}</div>
+        <div>
+            {t('Главная страница')}
+        </div>
     );
-});
+};
 
 export default MainPage;

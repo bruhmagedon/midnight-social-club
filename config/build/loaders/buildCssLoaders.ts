@@ -16,7 +16,13 @@ export function buildCssLoaders(isDev: boolean) {
                     },
                 },
             },
-            'sass-loader',
+            {
+                loader: 'sass-loader',
+                options: {
+                    // Prefer `dart-sass`, even if `sass-embedded` is available
+                    implementation: require.resolve('sass'),
+                },
+            },
         ],
     };
 }

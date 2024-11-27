@@ -4,11 +4,8 @@ import {
 } from 'react';
 import cls from './Input.module.scss';
 
-// Омит чтобы использовать свои value и onChange
-type HTMLInputProps = Omit<
-    InputHTMLAttributes<HTMLInputElement>,
-    'value' | 'onChange'
->;
+// Получить из типа все пропсы кроме (исключенных)
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;
 
 interface InputProps extends HTMLInputProps {
     className?: string;
@@ -31,6 +28,7 @@ export const Input = memo((props: InputProps) => {
     const [isFocused, setIsFocused] = useState(false);
     const [caretPosition, setCaretPosition] = useState(0);
 
+    // Автофокус при монтировании
     const ref = useRef<HTMLInputElement>(null);
     useEffect(() => {
         if (autofocus) {
@@ -39,21 +37,24 @@ export const Input = memo((props: InputProps) => {
         }
     }, [autofocus]);
 
+    // Из инпута выходим
     const onBlur = () => {
         setIsFocused(false);
     };
 
+    // Нажимаем на инпут и он фокусируется
     const onFocus = () => {
         setIsFocused(true);
     };
 
+    // Смотрим где находится картека, и меняем от этого положение
     const onSelect = (e: any) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        // Определение какое поле выделено (позиция каретки)
         setCaretPosition(e?.target?.selectionStart || 0);
     };
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // Опциональная цепочка для функций
+        // Опциональная цепочка для функций (поскольку пропс необязателен)
         onChange?.(e.target.value);
         setCaretPosition(e.target.value.length);
     };
