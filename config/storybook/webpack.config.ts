@@ -1,7 +1,8 @@
-import webpack, { DefinePlugin, RuleSetRule } from 'webpack';
+import webpack from 'webpack';
+import { DefinePlugin, type RuleSetRule } from 'webpack';
 import path from 'path';
 import { buildCssLoaders } from '../build/loaders/buildCssLoaders';
-import { BuildPaths } from '../build/types/config';
+import type { BuildPaths } from '../build/types/config';
 
 // Переопределение конфигурации webpack (под сторибук)
 export default ({ config }: {config: webpack.Configuration}) => {

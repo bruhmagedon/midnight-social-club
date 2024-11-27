@@ -1,3 +1,4 @@
+// biome-ignore lint/style/useNodejsImportProtocol: <explanation>
 import path from 'path';
 
 export default {

@@ -33,7 +33,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
                 size={ButtonSize.L}
                 square
             >
-                toggle
+                {collapsed ? '>' : '<'}
             </Button>
             <div className={cls.items}>
                 {SidebatItemsList.map((item) => <SidebarItem key={item.path} item={item} collapsed={collapsed} />)}
