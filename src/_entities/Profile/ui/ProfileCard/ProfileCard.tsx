@@ -1,10 +1,12 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Input } from 'shared/ui/Input/Input';
-import { Profile } from '_entities/Profile/model/types/profile';
+import type { Profile } from '_entities/Profile/model/types/profile';
 import { Loader } from 'shared/ui/Loader/Loader';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { Select } from 'shared/ui/Select/Select';
+import { Currency } from 'shared/const/common';
 import cls from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
@@ -12,12 +14,30 @@ interface ProfileCardProps {
   data?: Profile;
   error?: string;
   isLoading?: boolean;
+  onChangeFirstname?: (value?: string) => void;
+  onChangeLastname?: (value?: string) => void;
+  onChangeCity?: (value?: string) => void;
+  onChangeAge?: (value?: string) => void;
+  onChangeUsername?: (value?: string) => void;
+  onChangeAvatar?: (value?: string) => void;
+  readonly?: boolean;
 }
 
 export const ProfileCard = (props: ProfileCardProps) => {
     const {
-        className, data, isLoading, error,
+        className,
+        data,
+        isLoading,
+        error,
+        onChangeFirstname,
+        onChangeLastname,
+        onChangeCity,
+        onChangeAge,
+        onChangeUsername,
+        onChangeAvatar,
+        readonly,
     } = props;
+
     const { t } = useTranslation('profile');
 
     if (isLoading) {
@@ -35,23 +55,77 @@ export const ProfileCard = (props: ProfileCardProps) => {
                     title={t('Произошла ошибка при загрузке профиля')}
                     theme={TextTheme.ERROR}
                     text={t('Попробуйте обновить страницу')}
-                    align={}
+                    align={TextAlign.CENTER}
                 />
             </div>
         );
     }
 
+    const mods: Mods = {
+        [cls.editing]: !readonly,
+    };
+
     return (
-        <div className={classNames(cls.ProfileCard, {}, [className])}>
-            <div>
-                <div className={cls.header}>
-                    <Text title={t('Профиль')} />
-                    <Button theme={ButtonTheme.OUTLINE} className={cls.editBtn}>{t('Редактировать')}</Button>
-                </div>
-            </div>
+        <div className={classNames(cls.ProfileCard, mods, [className])}>
             <div className={cls.data}>
-                <Input value={data?.first} placeholder={t('Ваше имя')} />
-                <Input value={data?.lastname} placeholder={t('Ваша фамилия')} className={cls.input} />
+
+                {data?.avatar && (
+                    <div className={cls.avatarWrapper}>
+                        <Avatar src={data?.avatar} />
+                    </div>
+                )}
+                <Input
+                    value={data?.first}
+                    className={cls.input}
+                    placeholder={t('Имя')}
+                    onChange={onChangeFirstname}
+                    readonly={readonly}
+                />
+                <Input
+                    value={data?.lastname}
+                    className={cls.input}
+                    placeholder={t('Фамилия')}
+                    onChange={onChangeLastname}
+                    readonly={readonly}
+                />
+                <Input
+                    value={data?.username}
+                    className={cls.input}
+                    placeholder={t('Username')}
+                    onChange={onChangeUsername}
+                    readonly={readonly}
+                />
+                <Input
+                    value={data?.age}
+                    className={cls.input}
+                    placeholder={t('Возраст')}
+                    onChange={onChangeAge}
+                    readonly={readonly}
+                />
+                <Input
+                    value={data?.city}
+                    className={cls.input}
+                    placeholder={t('Город')}
+                    onChange={onChangeCity}
+                    readonly={readonly}
+                />
+
+                <Input
+                    value={data?.avatar}
+                    className={cls.input}
+                    placeholder={t('Аватар')}
+                    onChange={onChangeAvatar}
+                    readonly={readonly}
+                />
+                <Select
+                    label="Укажите валюту"
+                    options={[
+                        { value: Currency.RUB, content: Currency.RUB },
+                        { value: Currency.EUR, content: Currency.EUR },
+                        { value: Currency.USD, content: Currency.USD },
+                    ]}
+                />
+
             </div>
         </div>
     );

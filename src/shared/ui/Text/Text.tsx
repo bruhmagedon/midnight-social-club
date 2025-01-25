@@ -23,11 +23,15 @@ interface TextProps {
 
 export const Text = memo((props: TextProps) => {
     const {
-        className, text, title, theme = TextTheme.PRIMARY, align = TextAlign.LEFT,
+        className,
+        text,
+        title,
+        theme = TextTheme.PRIMARY,
+        align = TextAlign.LEFT,
     } = props;
 
     return (
-        <div className={classNames(cls.Text, { [cls[theme]]: true }, [className, cls[theme], cls[align]])}>
+        <div className={classNames(cls.Text, {}, [className, cls[theme], cls[align]])}>
             {title && <p className={cls.title}>{title}</p>}
             {text && <p className={cls.text}>{text}</p>}
         </div>
