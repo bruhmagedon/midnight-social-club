@@ -19,6 +19,7 @@ export const profileSlice = createSlice({
             state.readonly = action.payload;
         },
         cancelEdit: (state) => {
+            // Отмена изменения редактирования профиля
             state.readonly = true;
             state.form = state.data;
         },
@@ -51,6 +52,7 @@ export const profileSlice = createSlice({
             state.data = action.payload;
             state.isLoading = false;
             state.form = action.payload;
+            state.readonly = true;
         });
         builder.addCase(updateProfileData.rejected, (state, action) => {
             state.error = action.payload;

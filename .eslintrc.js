@@ -57,6 +57,7 @@ module.exports = {
 
         // Новые
         'react/jsx-no-useless-fragment': 'off',
+        'linebreak-style': 'off',
         'no-return-await': 'off',
     },
     // Глобальные переменные

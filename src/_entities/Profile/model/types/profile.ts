@@ -1,4 +1,5 @@
-import { Country, Currency } from 'shared/const/common';
+import { Country } from '_entities/Country';
+import { Currency } from '_entities/Currency';
 
 export interface Profile {
     first?: string
@@ -12,8 +13,8 @@ export interface Profile {
 }
 
 export interface ProfileSchema {
-    data?: Profile
-    form?: Profile
+    data?: Profile // данные, что приходят с сервера
+    form?: Profile // данные в форме изменения профиля
     isLoading: boolean
     error?: string
     readonly: boolean
