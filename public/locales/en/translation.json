@@ -15,5 +15,10 @@
     "Введите пароль": "Enter password",
     "Форма авторизации": "Authorization Form",
     "Некорректная авторизация": "You have entered an incorrect username or password",
-    "Выйти": "Log out"
+    "Выйти": "Log out",
+    "Серверная ошибка при сохранении": "Server error while saving",
+    "Данные не указаны": "Data not specified",
+    "Имя и фамилия обязательны": "Name and surname are required",
+    "Некорректный возраст": "Incorrect age",
+    "Некорректный регион": "Incorrect region"
 }

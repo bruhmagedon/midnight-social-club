@@ -21,6 +21,7 @@ export const profileSlice = createSlice({
         cancelEdit: (state) => {
             // Отмена изменения редактирования профиля
             state.readonly = true;
+            state.validateErrors = undefined;
             state.form = state.data;
         },
         updateProfile: (state, action: PayloadAction<Profile>) => {
@@ -55,7 +56,7 @@ export const profileSlice = createSlice({
             state.readonly = true;
         });
         builder.addCase(updateProfileData.rejected, (state, action) => {
-            state.error = action.payload;
+            state.validateErrors = action.payload;
             state.isLoading = false;
         });
     },
