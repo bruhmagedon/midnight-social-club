@@ -64,6 +64,7 @@ module.exports = {
     globals: {
         __IS_DEV__: true, // режим сборки
         __API__: true, // доступ к api
+        __PROJECT__: true, // Среда разработки
     },
     // Переопределение правил для определённых файлов
     overrides: [
