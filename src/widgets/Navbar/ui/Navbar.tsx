@@ -1,11 +1,11 @@
-// TODO убрать игнор
-/* eslint-disable i18next/no-literal-string */
 import { classNames } from 'shared/lib/classNames/classNames';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { useTranslation } from 'react-i18next';
-import { Modal } from 'widgets/Modal';
-import { t } from 'i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, memo } from 'react';
+import { LoginModal } from 'features/AuthByUsername';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserAuthData, userActions } from '_entities/User';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -14,10 +14,10 @@ interface NavbarProps {
 
 export const Navbar = ({ className }: NavbarProps) => {
     const { t } = useTranslation();
-    // Управление видимость модалки
+    const dispatch = useDispatch();
     const [isAuthModal, setIsAuthModal] = useState(false);
+    const authData = useSelector(getUserAuthData);
 
-    // Все функции, которые передаются как пропсы, будем кешировать
     const onCloseModal = useCallback(() => {
         setIsAuthModal(false);
     }, []);
@@ -25,6 +25,23 @@ export const Navbar = ({ className }: NavbarProps) => {
     const onShowModal = useCallback(() => {
         setIsAuthModal(true);
     }, []);
+
+    const onLogout = useCallback(() => dispatch(userActions.logout()), [dispatch]);
+
+    // Если авторизован
+    if (authData) {
+        return (
+            <div className={classNames(cls.Navbar, {}, [className])}>
+                <Button
+                    theme={ButtonTheme.CLEAR_INVERTED}
+                    className={cls.links}
+                    onClick={onLogout}
+                >
+                    {t('Выйти')}
+                </Button>
+            </div>
+        );
+    }
 
     return (
         <div className={classNames(cls.Navbar, {}, [className])}>
@@ -35,11 +52,7 @@ export const Navbar = ({ className }: NavbarProps) => {
             >
                 {t('Войти')}
             </Button>
-            <Modal isOpen={isAuthModal} onClose={onCloseModal}>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus ipsa odio id quo tempore omnis
-                obcaecati, tenetur possimus magnam voluptas error eum quam dolore
-                repellat, minima et, ullam ratione beatae.
-            </Modal>
+            {isAuthModal && <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />}
         </div>
     );
 };

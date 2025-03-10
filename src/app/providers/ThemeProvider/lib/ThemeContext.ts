@@ -2,8 +2,9 @@ import { createContext } from 'react';
 
 // доступные темы
 export enum Theme {
-    LIGHT = 'light',
-    DARK = 'dark',
+    LIGHT = 'app_light_theme',
+    DARK = 'app_dark_theme',
+    ORANGE = 'app_orange_theme',
 }
 // Интерфейс для контекста
 export interface ThemeContextProps {

@@ -1,5 +1,6 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import {
+    MutableRefObject,
     useCallback,
     useEffect,
     useRef,
@@ -7,6 +8,7 @@ import {
     type ReactNode,
 } from 'react';
 import { Portal } from 'shared/ui/Portal/Portal';
+import { useTheme } from 'app/providers/ThemeProvider';
 import cls from './Modal.module.scss';
 
 interface ModalProps {
@@ -14,7 +16,7 @@ interface ModalProps {
     children?: ReactNode;
     isOpen?: boolean; // Статус открытия
     onClose?: () => void; // Хендлер закрытия
-    lazy?: boolean;
+    lazy?: boolean; // C флагом lazy мы не монтируем модалку при загрузке страницы. Она монтируется только при нажатии на кнопку, когда isOpen = true
 }
 
 const ANIMATION_DELAY = 300;
@@ -28,7 +30,8 @@ export const Modal = ({
 }: ModalProps) => {
     const [isClosing, setIsClosing] = useState(false); // Момент закрытия модалки (для анимации закрытия)
     const [isMounted, setIsMounted] = useState(false);
-    const timerRef = useRef<ReturnType<typeof setTimeout>>(); // Реф, чтобы очистить таймер
+
+    const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>; // Реф, чтобы очистить таймер (мутабельный реф)
 
     useEffect(() => {
         if (isOpen) {
@@ -77,7 +80,7 @@ export const Modal = ({
     };
 
     // Моды (условные стили)
-    const mods: Record<string, boolean> = {
+    const mods: Mods = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
     };

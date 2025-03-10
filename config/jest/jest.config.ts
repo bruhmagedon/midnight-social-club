@@ -1,3 +1,4 @@
+// biome-ignore lint/style/useNodejsImportProtocol: <explanation>
 import path from 'path';
 
 export default {
@@ -13,5 +14,10 @@ export default {
     moduleNameMapper: {
         '\\.s?css$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    },
+    globals: {
+        __IS_DEV__: true,
+        __API__: '',
+        __PROJECT__: 'jest',
     },
 };
