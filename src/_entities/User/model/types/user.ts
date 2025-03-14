@@ -7,4 +7,5 @@ export interface User {
 // если undefined - не авторизован никто
 export interface UserSchema {
     authData?: User;
+    _inited?: boolean;
 }
