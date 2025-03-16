@@ -7,6 +7,7 @@ import { ProfileSchema } from '_entities/Profile';
 import { UserSchema } from '_entities/User';
 import { AxiosInstance } from 'axios';
 import { LoginSchema } from 'features/AuthByUsername/model/types/loginSchema';
+import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
 import { NavigateOptions, To } from 'react-router-dom';
 
 export interface StateSchema {
@@ -17,6 +18,7 @@ export interface StateSchema {
     loginForm?: LoginSchema;
     profile?: ProfileSchema
     articleDetails?: ArticleDetailsSchema
+    articleDetailsComments?: ArticleDetailsCommentsSchema;
 }
 
 export type StateSchemaKeys = keyof StateSchema; // Названия редьюсеров (название=ключ)
