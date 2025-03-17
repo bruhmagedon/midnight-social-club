@@ -17,7 +17,7 @@ interface DynamicModuleLoaderProps {
 // Компонент для подключения динамических редьюсеров
 export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
     const {
-        reducers, removeAfterUnmount, children,
+        reducers, removeAfterUnmount = true, children,
     } = props;
 
     const store = useStore() as ReduxStoreWithManager;

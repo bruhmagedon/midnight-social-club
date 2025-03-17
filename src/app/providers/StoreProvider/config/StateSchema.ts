@@ -6,6 +6,7 @@ import { CounterSchema } from '_entities/Counter';
 import { ProfileSchema } from '_entities/Profile';
 import { UserSchema } from '_entities/User';
 import { AxiosInstance } from 'axios';
+import { AddCommentFormSchema } from 'features/addCommentForm';
 import { LoginSchema } from 'features/AuthByUsername/model/types/loginSchema';
 import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
 import { NavigateOptions, To } from 'react-router-dom';
@@ -19,6 +20,7 @@ export interface StateSchema {
     profile?: ProfileSchema
     articleDetails?: ArticleDetailsSchema
     articleDetailsComments?: ArticleDetailsCommentsSchema;
+    addCommentForm?: AddCommentFormSchema;
 }
 
 export type StateSchemaKeys = keyof StateSchema; // Названия редьюсеров (название=ключ)
