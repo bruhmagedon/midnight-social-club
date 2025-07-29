@@ -7,9 +7,9 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEf
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { Page } from 'shared/ui/Page/Page';
-import { fetchNextArticlesPage } from 'pages/ArticlesPage/model/services/fetchNextArticlesPage';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { fetchArticlesList } from '../../model/services/fetchArticlesList';
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage';
+import { initArticlesPage } from '../../model/services/initArticlesPage';
 import {
     getArticlesPageError,
     getArticlesPageIsLoading,
@@ -39,14 +39,11 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     }, [dispatch]);
 
     const onLoadNextPart = useCallback(() => {
-        dispatch(fetchNextArticlesPage);
+        dispatch(fetchNextArticlesPage());
     }, [dispatch]);
 
     useInitialEffect(() => {
-        dispatch(fetchArticlesList({
-            page: 1,
-        }));
-        dispatch(articlePageActions.initState());
+        dispatch(initArticlesPage());
     });
 
     if (error) {

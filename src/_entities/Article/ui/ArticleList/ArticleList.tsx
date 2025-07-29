@@ -24,7 +24,7 @@ export const ArticleList = ({
     isLoading,
 }: ArticleListProps) => {
     const renderArticle = (article: Article) => (
-        <ArticleListItem article={article} view={view} className={cls.card} />
+        <ArticleListItem key={article.id} article={article} view={view} className={cls.card} />
     );
 
     return (

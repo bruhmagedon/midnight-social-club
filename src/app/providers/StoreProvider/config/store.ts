@@ -6,14 +6,12 @@ import {
 import { counterReducer } from '_entities/Counter';
 import { userReducer } from '_entities/User';
 import { $api } from 'shared/api/api';
-import type { NavigateOptions, To } from 'react-router-dom';
 import type { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
 export function createReduxStore(
     initialState? : StateSchema,
     asyncReducers?: ReducersMapObject<StateSchema>,
-    navigate?: (to: To, options?: NavigateOptions) => void,
 ) {
     // Список корневых редьюсеров
     const rootReducers : ReducersMapObject<StateSchema> = {
@@ -33,7 +31,6 @@ export function createReduxStore(
             {
                 extraArgument: {
                     api: $api,
-                    navigate,
                 },
             },
         }),

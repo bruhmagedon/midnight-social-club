@@ -10,7 +10,6 @@ import { AddCommentFormSchema } from 'features/addCommentForm';
 import { LoginSchema } from 'features/AuthByUsername/model/types/loginSchema';
 import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
-import { NavigateOptions, To } from 'react-router-dom';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -25,7 +24,8 @@ export interface StateSchema {
     articlesPage?: ArticlesPageSchema;
 }
 
-export type StateSchemaKeys = keyof StateSchema; // Названия редьюсеров (название=ключ)
+export type StateSchemaKey = keyof StateSchema; // Названия редьюсеров (название=ключ)
+export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
 
 export interface ReducerManager {
     getReducerMap: () => ReducersMapObject<StateSchema>;
@@ -33,8 +33,9 @@ export interface ReducerManager {
         state: StateSchema,
         action: AnyAction,
     ) => CombinedState<StateSchema>;
-    add: (key: StateSchemaKeys, reducer: Reducer) => void;
-    remove: (key: StateSchemaKeys) => void;
+    add: (key: StateSchemaKey, reducer: Reducer) => void;
+    remove: (key: StateSchemaKey) => void;
+    getMountedReducers: () => MountedReducers;
 }
 
 // EnhancedStore - стандартный тип, который возвращается при создании стора
@@ -44,7 +45,6 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 
 export interface ThunkExtraArg {
     api: AxiosInstance,
-    navigate?: (to: To, options?: NavigateOptions) => void
 }
 
 export interface ThunkConfig<T> {
