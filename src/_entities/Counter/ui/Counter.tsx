@@ -1,11 +1,7 @@
-/* eslint-disable i18next/no-literal-string */
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Button } from 'shared/ui/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { StateSchema } from 'app/providers/StoreProvider';
-import cls from './Counter.module.scss';
-import { counterActions, counterSlice } from '../model/slice/counterSlice';
+import { Button } from 'shared/ui/Button/Button';
 import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
+import { counterActions } from '../model/slice/counterSlice';
 
 interface CounterProps {
   className?: string;
@@ -25,8 +21,12 @@ export const Counter = ({ className }: CounterProps) => {
     return (
         <div>
             <h1 data-testid="value-title">{`Value = ${counterValue}`}</h1>
-            <Button data-testid="increment-btn" onClick={inc}>Inc</Button>
-            <Button data-testid="decrement-btn" onClick={dec}>Dec</Button>
+            <Button data-testid="increment-btn" onClick={inc}>
+                Inc
+            </Button>
+            <Button data-testid="decrement-btn" onClick={dec}>
+                Dec
+            </Button>
         </div>
     );
 };

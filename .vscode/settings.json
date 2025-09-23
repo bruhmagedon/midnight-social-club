@@ -1,0 +1,42 @@
+{
+    // Указываем ESLint как форматтер по умолчанию для TypeScript и JavaScript файлов
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    // "[json]": {
+    //   "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    // },
+  
+    // Включаем форматирование при сохранении
+    "editor.formatOnSave": true,
+  
+    // Включаем автоматическое исправление ошибок ESLint при сохранении
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+  
+    // Включаем ESLint как средство для форматирования
+    "eslint.format.enable": true,
+    "eslint.useFlatConfig": false,
+  
+    // Отключаем Prettier для данного воркспейса
+    "prettier.enable": false,
+    
+    // Отключаем Biome для данного воркспейса
+    "biome.enabled": false,
+    "files.exclude": {
+      "node_modules/": true,
+      "extractedTranslations" : true,
+      ".loki" : true,
+      ".husky" : true,
+      ".github" : true,
+      "scripts" : true,
+      "README.md" : true,
+    }
+  }
